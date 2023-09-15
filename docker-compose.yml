@@ -1,0 +1,40 @@
+version: "3" 
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: wp_db
+      MYSQL_USER: wp_db_user
+      MYSQL_PASSWORD: userpass
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: wp_db_user
+      PMA_PASSWORD: userpass
+    ports:
+      - "8080:80"
+  wordpress:
+    container_name: wordpress-untitled
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: wordpress.dockerfile
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp_db_user
+      WORDPRESS_DB_PASSWORD: userpass
+      WORDPRESS_DB_NAME: wp_db
+    volumes:
+      ["./plugins:/var/www/html/wp-content/plugins"]
+volumes:
+  mysql: {}
+
+  
