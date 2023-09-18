@@ -1,24 +1,28 @@
 version: "3" 
 services:
   db:
-    image: mysql:5.7
+    container_name: random_product_database
+    image: "mysql:${MYSQL_VERSION}"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: wp_db
-      MYSQL_USER: wp_db_user
-      MYSQL_PASSWORD: userpass
+      MYSQL_ROOT_PASSWORD: "${ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DATABASE_NAME}"
+      MYSQL_USER: "${DATABASE_USER_NAME}"
+      MYSQL_PASSWORD: "${DATABASE_USER_PASSWORD}"
+
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    container_name: random_product_phpmyadmin
+    image: "phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION}"
     restart: always
     environment:
       PMA_HOST: db
-      PMA_USER: wp_db_user
-      PMA_PASSWORD: userpass
+      PMA_USER: "${DATABASE_USER_NAME}"
+      PMA_PASSWORD: "${DATABASE_USER_PASSWORD}"
     ports:
       - "8080:80"
+      
   wordpress:
-    container_name: wordpress-untitled
+    container_name: random_product_wordpress_composer
     depends_on:
       - db
     build:
@@ -29,9 +33,9 @@ services:
       - "8000:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wp_db_user
-      WORDPRESS_DB_PASSWORD: userpass
-      WORDPRESS_DB_NAME: wp_db
+      WORDPRESS_DB_USER: "${DATABASE_USER_NAME}"
+      WORDPRESS_DB_PASSWORD: "${DATABASE_USER_PASSWORD}"
+      WORDPRESS_DB_NAME: "${DATABASE_NAME}"
     volumes:
       ["./plugins:/var/www/html/wp-content/plugins"]
 volumes:
