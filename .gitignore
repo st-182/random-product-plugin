@@ -2,3 +2,5 @@ vendor
 akismet
 woocommerce
 .env
+hello.php
+index.php
