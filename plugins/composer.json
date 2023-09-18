@@ -25,8 +25,8 @@
             }
     ],
     "scripts": {
-        "lint:plugin": "phpcs --standard=WordPress ./socks-random/socks-woocomerce.php",
-        "fix:plugin": "phpcs --standard=WordPress ./socks-random/socks-woocomerce.php"
+        "lint:plugin": "phpcs --standard=WordPress ./socks-random/socks-random.php",
+        "fix:plugin": "phpcs --standard=WordPress ./socks-random/socks-random.php"
         
     },
     "config": {
