@@ -25,7 +25,8 @@
  ## README file contains documentation about the plugin.
 - it does.
  ## Provide resources from your search to complete the task
-- wordpress admin dashboard API
+- wordpress admin dashboard API [link1](https://developer.wordpress.org/apis/dashboard-widgets/)
+- random products query functionality [link1](https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters)
 - all other information was retrieved during development by googling specific questions, so different aspects were searched.
  ## Code readability
 - I left not that much comments because the functionality itself is very simple, so just necessary comments in my opinion
