@@ -107,7 +107,7 @@ function random_products_shortcode( $atts ) {
 add_shortcode( 'random_products', 'random_products_shortcode' );
 
 
-function get_random_products() {
+function get_random_products(): string {
 	// Get the settings
 	$quantity = get_option( 'random_products_quantity', 5 ); // Default to 5 if not set
 	$category = get_option( 'random_products_category', '' );
